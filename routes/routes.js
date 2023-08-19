@@ -17,6 +17,16 @@ router.get('/videos', async (req, res) => {
 );
 
 // GET /api/products
+router.get('/products', async (req, res) => {
+    try {
+        const products = await Product.find();
+        res.json(products);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+);
+
 router.get('/products/:videoId', async (req, res) => {
     try {
         const products = await Product.find({ video_id: req.params.videoId });
